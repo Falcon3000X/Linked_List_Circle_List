@@ -61,13 +61,14 @@ namespace Linked_List_Circle_List
             circularList.Add(4);
             circularList.Add(5);
 
-            foreach (var item in circularList)
+            foreach (var item in circularList)// Show list in terminal
             {
                 Console.Write(item + " ");
             }
 
             circularList.Delete(3);
             Console.WriteLine();
+
             foreach (var item in circularList)
             {
                 Console.Write(item + " ");
