@@ -1,5 +1,6 @@
 ﻿using Linked_List_Circle_List.Двусвязный_список;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Linked_List_Circle_List.Кольцевой_список
 {
-    public class CircularLinkedList<T>
+    public class CircularLinkedList<T> : IEnumerable
     {
         public DuplexItem<T> Head { get; set; }
         public int Count { get; set; }
@@ -18,6 +19,10 @@ namespace Linked_List_Circle_List.Кольцевой_список
             SetHeadItem(data);
         }
 
+        /// <summary>
+        /// Добавление елемента в кольцевой список
+        /// </summary>
+        /// <param name="data"></param>
         public void Add(T data)
         {
             if (Count == 0)
@@ -35,6 +40,10 @@ namespace Linked_List_Circle_List.Кольцевой_список
             Count++;
         }
 
+        /// <summary>
+        /// Удаление елемента из кольцевого списка
+        /// </summary>
+        /// <param name="data"></param>
         public void Delete(T data)
         {
             if (Head.Data.Equals(data))
@@ -51,9 +60,14 @@ namespace Linked_List_Circle_List.Кольцевой_список
                 {
                     RemoveItem(current);
                 }
+                current = current.Next; // Переход на следующий елемент
             }
         }
 
+        /// <summary>
+        /// Вспомогательный метод для удаления елемента
+        /// </summary>
+        /// <param name="current"></param>
         private void RemoveItem(DuplexItem<T> current)
         {
             current.Next.Previous = current.Previous;
@@ -61,6 +75,10 @@ namespace Linked_List_Circle_List.Кольцевой_список
             Count--;
         }
 
+        /// <summary>
+        /// Установка елемента головным
+        /// </summary>
+        /// <param name="data"></param>
         private void SetHeadItem(T data)
         {
             Head = new DuplexItem<T>(data);
@@ -69,6 +87,18 @@ namespace Linked_List_Circle_List.Кольцевой_список
             Count = 1;
         }
 
-
+        /// <summary>
+        /// Энумератор для перебора кольцевого списка 
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerator GetEnumerator()
+        {
+            var current = Head;
+            for (int i = 0; i < Count; i++)
+            {
+                yield return current;
+                current = current.Next;
+            }
+        }
     }
 }

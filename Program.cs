@@ -1,4 +1,5 @@
 ﻿using Linked_List_Circle_List.Двусвязный_список;
+using Linked_List_Circle_List.Кольцевой_список;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -52,10 +53,25 @@ namespace Linked_List_Circle_List
 
             //----------------------------------------
             // Кольцевой лист
+            Console.WriteLine("\nCircualr list");
+            var circularList = new CircularLinkedList<int>();
+            circularList.Add(1);
+            circularList.Add(2);
+            circularList.Add(3);
+            circularList.Add(4);
+            circularList.Add(5);
 
+            foreach (var item in circularList)
+            {
+                Console.Write(item + " ");
+            }
 
-
-
+            circularList.Delete(3);
+            Console.WriteLine();
+            foreach (var item in circularList)
+            {
+                Console.Write(item + " ");
+            }
 
             Console.ReadLine();
         }
