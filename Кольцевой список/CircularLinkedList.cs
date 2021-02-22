@@ -13,7 +13,7 @@ namespace Linked_List_Circle_List.Кольцевой_список
         public DuplexItem<T> Head { get; set; }
         public int Count { get; set; }
 
-        public CircularLinkedList() { }
+        public CircularLinkedList() { }// Empty constructor
         public CircularLinkedList(T data)
         {
             SetHeadItem(data);
